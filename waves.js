@@ -3,15 +3,50 @@ const random = require("canvas-sketch-util/random");
 const palettes = require("nice-color-palettes");
 
 const settings = {
-  dimensions: [2048, 2048],
+  // dimensions: [2048, 2048],
+  dimensions: [1920, 1080],
+  // dimensions: [1080, 1920],
   animate: true,
 };
 
+/**
+ * PORTRAIT
+ * dimensions: [1080, 1920],
+ * 
+ * var maxX = 1080 + maxMaxRad;
+  var minY = 960 - 10;
+  var maxY = 960 + 10;
+ * 
+ */
+
+/**
+ * LANDSCAPE
+ * dimensions: [1920, 1080],
+ * 
+ * var maxX = 1920 + maxMaxRad;
+  var minY = 540 - 10;
+  var maxY = 540 + 10;
+ * 
+ */
+
 const sketch = () => {
-  const palette = random.pick(palettes);
+  // const palette = random.pick(palettes);
+  /* NIGHT OWL */
+  const palette = [
+    "#D6DEEB",
+    "#7E57C25A",
+    "#FF6363",
+    "#F78C6C",
+    "#C792EA",
+    "#82AAFF",
+    "#ECC48DFF",
+    "#ADDB67",
+    "#7FDBCA",
+    "#FF2C83",
+  ];
   var numCircles = 18;
-  var maxMaxRad = 1024;
-  var minMaxRad = 1024;
+  var maxMaxRad = 300; //1024 --> muda a amplitude de Y
+  var minMaxRad = 300; //1024
   var minRadFactor = 0;
   var circles = [];
   var iterations = 10;
@@ -20,11 +55,11 @@ const sketch = () => {
   var lineWidth = 5;
   var colorArray = [];
   var minX = -maxMaxRad;
-  var maxX = 2048 + maxMaxRad;
-  var minY = 1024 - 256;
-  var maxY = 1024 + 256;
+  var maxX = 1920 + maxMaxRad; //2048 - ...
+  var minY = 540 - 10; //1024
+  var maxY = 540 + 10; //1024
   var lineNumber = 0;
-  var twistAmount = 0.87 * Math.PI * 2;
+  var twistAmount = 1.2 * Math.PI * 2; //.87
   var fullTurn = (Math.PI * 2 * numPoints) / (1 + numPoints);
   /*   var lineAlpha = 0.1;
   var maxColorValue = 100;
@@ -232,9 +267,9 @@ const sketch = () => {
   return ({ context, width, height }) => {
     if (init) {
       init = false;
-      context.fillStyle = random.pick(palette);
+      // context.fillStyle = random.pick(palette);
+      context.fillStyle = "#011627";
       context.fillRect(0, 0, width, height);
-      // startGenerate(context, width, height);
       startGenerate();
     }
     onTimer(context);
